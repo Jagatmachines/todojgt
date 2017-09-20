@@ -1,0 +1,13 @@
+{{#if toggleEditItem}}
+    <div class="editing">
+        {{input type="text" class="edit" value=item.name focus-out='editComplete'}}
+    </div>
+{{else}}
+    <div class="view">
+        {{input type='checkbox' class='toggle' checked=item.isCompleted change=(action 'tComplete' item.isCompleted)}}
+        <label class="{{if item.isCompleted 'completed'}}" ondblclick={{action 'editFast'}}>{{item.name}}</label>
+        <button class="destroy" {{action 'removeFast' item}}></button>
+    </div>
+{{/if}}
+
+{{yield}}

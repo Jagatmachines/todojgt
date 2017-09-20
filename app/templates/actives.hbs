@@ -1,0 +1,13 @@
+{{#each model as |item|}}
+    {{#unless item.isCompleted}}
+        <div id="todo-list">
+            <li>
+                {{#todo-comp item=item onItemClicked='editNow' onDeleteItem='removeItem' onCompleteItem='completeItem'}}{{/todo-comp}}
+            </li>
+        </div>
+    {{/unless}}
+{{/each}}
+
+
+
+{{outlet}}
