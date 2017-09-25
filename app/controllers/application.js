@@ -19,12 +19,12 @@ export default Ember.Controller.extend({
     }),
     
     actions: {
-        createItem() {
-            var citem = this.get('createitem');
-            if (citem != '' && citem != undefined) {
-                this.get('datastore').additem(citem);
+        createItem(e) {
+            //debugger;
+            if (e.keyCode === 13 && !Ember.isBlank(e.target.value)) {
+                this.get('datastore').additem(e.target.value);
                 const createitem = this.store.createRecord('todo', {
-                    name: citem
+                    name: e.target.value
                 });
     
                 createitem.save().then(() => {
@@ -33,8 +33,9 @@ export default Ember.Controller.extend({
                 }).catch(() => {
                     console.log('not created');
                 })
-            }  
-        
+
+                
+            }     
         },
 
         clearComplete() {
